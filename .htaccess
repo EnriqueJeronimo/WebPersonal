@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Permitir acceso directo a archivos dentro de /public
+RewriteCond %{REQUEST_URI} ^/public/
+RewriteRule ^ - [L]
+
+# Redirigir todo lo demás al front controller
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]
